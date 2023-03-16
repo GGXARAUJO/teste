@@ -1,17 +1,19 @@
 pipeline {
-agent {
-    docker { image 'my-node-app' }
-  }
-stage('Build Docker Image') {
-  steps {
-    sh 'docker build -t my-node-app .'
-  }
-}
- 
+  agent any
+
   stages {
-    stage('Test') {
+    stage('Build Docker Image') {
       steps {
-        sh 'node --version'
+        script {
+          dockerImage = docker.build('my-node-app:latest', '-f Dockerfile .')
+        }
+      }
+    }
+    stage('Run Docker Container') {
+      steps {
+        script {
+          dockerImage.run('--rm -p 8080:8080')
+        }
       }
     }
   }
