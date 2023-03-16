@@ -18,7 +18,7 @@ parameters {
       steps {
         def file = sh(script: "basename ${params.TRANSFORMATION_FILE}", returnStdout: true).trim()
         script {
-          dockerImage.run('--rm -v $TRANSFORMATION_FILE:/data/$file -v $CONFIG_FILE:/root/.kettle pent29 /bin/bash -c './pan.sh /file:/data/$file')
+          dockerImage.run('--rm -p 8080:8080 -v $TRANSFORMATION_FILE:/data/$file -v $CONFIG_FILE:/root/.kettle pent29 /bin/bash -c './pan.sh /file:/data/$file')
         }
       }
     }
