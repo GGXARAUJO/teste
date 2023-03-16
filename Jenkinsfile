@@ -19,7 +19,7 @@ parameters {
     stage('Start Container') {
             steps {
                 
-                    sh "docker run --rm -v $TRANSFORMATION_FILE:/data/helloworld.ktr -v $CONFIG_FILE:/root/.kettle pentahodi:latest /bin/bash -c 'cd data-integration && ls -la'"
+                    sh "docker run --rm -v $TRANSFORMATION_FILE:/data/helloworld.ktr -v $CONFIG_FILE:/root/.kettle pentahodi:latest /bin/bash -c './data-integration/kitchen.sh /file:/data/helloworld.ktr'"
             }
         }
                           
