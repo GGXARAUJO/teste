@@ -11,14 +11,14 @@ parameters {
       steps {
         script {
           dockerImage = docker.build('PentahoDI:latest', '-f Dockerfile .')
-        }
+        
       }
     }
     
       }
     }
   }
-}
+
 
     
                    
