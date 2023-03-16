@@ -16,14 +16,12 @@ parameters {
     }
     
       }
-    stage('Run Docker Container') {
-      steps {
-        
-        script {
-          dockerImage.run('-it -v $TRANSFORMATION_FILE:/data/helloworld.ktr -v $CONFIG_FILE:/root/.kettle pentahodi:latest /bin/bash ls -la')
+    stage('Start Container') {
+            steps {
+                def file = sh(script: "basename ${params.TRANSFORMATION_FILE}", returnStdout: true).trim()
+                    sh "docker run --rm -v $TRANSFORMATION_FILE:/data/$file -v $CONFIG_FILE:/root/.kettle pentahodi:latest /bin/bash -c './pan.sh /file:/data/$file'"
+            }
         }
-    }
-                          }
                           
   }
 }
