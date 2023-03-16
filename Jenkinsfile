@@ -10,7 +10,7 @@ parameters {
     stage('Build Docker Image') {
       steps {
         script {
-          dockerImage = docker.build('PentahoDI:latest', '-f Dockerfile .')
+          dockerImage = docker.build('pentahodi:latest', '-f Dockerfile .')
         
       }
     }
