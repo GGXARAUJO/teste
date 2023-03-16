@@ -20,7 +20,7 @@ parameters {
       steps {
         
         script {
-          dockerImage.run('--rm -p 8080:8080 -v $TRANSFORMATION_FILE:/data/helloworld.ktr -v $CONFIG_FILE:/root/.kettle pentahodi:latest /bin/bash -c './pan.sh /file:/data/helloworld.ktr')
+          dockerImage.run('--rm -p 8080:8080 -v $TRANSFORMATION_FILE:/data/helloworld.ktr -v $CONFIG_FILE:/root/.kettle pentahodi:latest /bin/bash ./pan.sh /file:/data/helloworld.ktr')
         }
     }
                           }
